@@ -1,12 +1,13 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "3.52.0"
+    }
+  }
+}
+
 provider "aws" {
-  region = var.AWS_REGION
-}
-
-data "aws_region" "current" {
-}
-
-data "aws_availability_zones" "available" {
-}
-
-provider "http" {
+  region = "us-east-1"
+  # Configuration options
 }
