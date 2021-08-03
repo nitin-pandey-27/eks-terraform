@@ -78,13 +78,15 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {
   name = "AmazonEKSWorkerNodePolicy"
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   roles = aws_iam_role.eks_nodes.name
-  # Bind the role with the Policy "AmazonEKSClusterPolicy"
+  # Bind the role with the Policy "AmazonEKSWorkerNodePolicy"
+  # Refer - https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html#create-worker-node-role
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
   name = "AmazonEC2ContainerRegistryReadOnly"
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   roles = aws_iam_role.eks_nodes.name
-  # Bind the role with the Policy "AmazonEKSClusterPolicy"
+  # Bind the role with the Policy "AmazonEC2ContainerRegistryReadOnly"
+  # Refer - https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html#create-worker-node-role
 }
 
