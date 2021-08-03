@@ -3,6 +3,7 @@ resource "aws_iam_role" "eks_cluster" {
   
   # resource name = eks_cluster
   # IAM Role Name = eksClusterRole
+  # Creating a Cluster -- https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html
   # Resource Detail - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
   # Role Creation - https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html#create-service-role
   # Role Policy - https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html
@@ -37,18 +38,16 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
   # Policy Binding - https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html
 }
 
-#resource "aws_iam_role_policy_attachment" "AmazonEKSServiceRolePolicy" {
-#  name = "AmazonEKSServiceRolePolicy"
-#  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServiceRolePolicy"
-#  roles       = aws_iam_role.eks_cluster.name
-#  # Bind the role with the Policy "AmazonEKSServiceRolePolicy"
-#}
+
+##########################
+##########################
 
 resource "aws_iam_role" "eks_nodes" {
   name = "eksNodeRole"
   
   # resource name = eks_nodes
   # IAM Role Name = eksNodeRole
+  # Creating a Node - https://docs.aws.amazon.com/eks/latest/userguide/create-managed-node-group.html
   # Resource Detail - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
   # Role Creation - https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html#create-worker-node-role
   # Policy Attach - https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html#create-worker-node-role
