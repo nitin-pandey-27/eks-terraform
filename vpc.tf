@@ -17,7 +17,7 @@ module "vpc" {
   #No need to enable any Gateway
 
   tags = {
-    sre_candidate = "${var.candidate-name}"
+    sre_candidate = "${var.candidate_name}"
     #Tag 
   }
 }
