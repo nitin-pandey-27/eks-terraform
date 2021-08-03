@@ -32,7 +32,7 @@ EOF
  
 resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  roles = [aws_iam_role.eks_cluster.name]
+  role = aws_iam_role.eks_cluster.name
   # Bind the role with the Policy "AmazonEKSClusterPolicy"
   # Policy Binding - https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html
 }
@@ -75,14 +75,14 @@ EOF
  
 resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-  roles = [aws_iam_role.eks_nodes.name]
+  role = aws_iam_role.eks_nodes.name
   # Bind the role with the Policy "AmazonEKSWorkerNodePolicy"
   # Refer - https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html#create-worker-node-role
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  roles = [aws_iam_role.eks_nodes.name]
+  role = aws_iam_role.eks_nodes.name
   # Bind the role with the Policy "AmazonEC2ContainerRegistryReadOnly"
   # Refer - https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html#create-worker-node-role
 }
