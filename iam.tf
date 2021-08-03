@@ -38,9 +38,6 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
 }
 
 
-##########################
-##########################
-
 resource "aws_iam_role" "eks_nodes" {
   name = "eksNodeRole"
   
