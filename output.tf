@@ -30,5 +30,5 @@ output "config_map_aws_auth" {
 
 output "cluster_name" {
   description = "Kubernetes Cluster Name"
-  value       = local.cluster_name
+  value       = "${var.candidate_name}"
 }
