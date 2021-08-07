@@ -1,3 +1,8 @@
+locals {
+  sre_candidate = "${var.candidate_name}"
+}
+
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.2.0"
@@ -15,6 +20,16 @@ module "vpc" {
   enable_nat_gateway = false
   enable_vpn_gateway = false
   #No need to enable any Gateway
+  
+  public_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/role/elb"                      = "1"
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/role/internal-elb"             = "1"
+  }
 
   tags = {
     sre_candidate = "${var.candidate_name}"
