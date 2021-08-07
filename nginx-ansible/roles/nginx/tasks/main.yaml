@@ -1,7 +1,7 @@
 - name: Copy over the Deployemtn configuration
   copy: src=/tmp/nginx/roles/nginx/templates/ dest=/tmp/
 
-- name: Installing Docker 
+- name: Create Deployment File
   shell: |
    kubectl delete -f deployment 
    sleep 20
