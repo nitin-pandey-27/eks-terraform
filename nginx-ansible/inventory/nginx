@@ -1,0 +1,3 @@
+[workstation]
+inn3-master01 ansible_host=10.132.213.6
+

@@ -1,0 +1,18 @@
+- name: Copy over the Deployemtn configuration
+  copy: src=/tmp/nginx/roles/nginx/templates/ dest=/tmp/
+
+- name: Installing Docker 
+  shell: |
+   kubectl delete -f deployment 
+   sleep 20
+   kubectl apply -f  /tmp/deployment.yaml
+   sleep 30
+
+- name: Copy files in PODS
+  shell: |
+   cd /tmp/
+   kubectl  cp nginx.conf `kubectl  get pods  | grep nginx | awk {'print $1'}`:/etc/nginx/
+   kubectl  cp custom-errors.conf `kubectl  get pods  | grep nginx | awk {'print $1'}`:/etc/nginx/
+   kubectl  cp default.conf `kubectl  get pods  | grep nginx | awk {'print $1'}`:/etc/nginx/conf.d/
+   kubectl  cp html `kubectl  get pods  | grep nginx | awk {'print $1'}`:/usr/share/nginx/
+
