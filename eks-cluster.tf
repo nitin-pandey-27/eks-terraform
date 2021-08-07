@@ -30,15 +30,27 @@ module "eks" {
       name                          = "worker-group-1"
       instance_type                 = "t2.small"
       additional_userdata           = "echo foo bar"
-      asg_desired_capacity          = 2
+      asg_desired_capacity          = 1
+      asg_max_size                  = 2
+      #Autoscaling group 
+      spot_price                    = "0.20"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+      kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=spot"
+      suspended_processes           = ["AZRebalance"]
+      #How to use spot instance - https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/spot-instances.md
     },
     {
       name                          = "worker-group-2"
       instance_type                 = "t2.small"
       additional_userdata           = "echo foo bar"
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
       asg_desired_capacity          = 1
+      asg_max_size                  = 2
+      #Autoscaling group 
+      spot_price                    = "0.20"
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
+      kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=spot"
+      suspended_processes           = ["AZRebalance"]
+      #How to use spot instance - https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/spot-instances.md
     },
   ]
 }
