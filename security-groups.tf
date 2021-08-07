@@ -1,3 +1,7 @@
+# For module reference please refer this below 
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
+# We have used separate block for ingress and not DYNAMIC blocks that allows repeatable nested blocks
+
 resource "aws_security_group" "worker_group_mgmt_one" {
   name_prefix = "worker_group_mgmt_one"
   vpc_id      = module.vpc.vpc_id
