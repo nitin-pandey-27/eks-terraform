@@ -19,20 +19,21 @@ module "vpc" {
 
   enable_nat_gateway = false
   enable_vpn_gateway = false
+  enable_dns_hostnames = false
   #No need to enable any Gateway
   
+  tags = {
+    "kubernetes.io/cluster/${local.sre_candidate}" = "shared"
+  }
+  
   public_subnet_tags = {
-    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/cluster/${local.sre_candidate}" = "shared"
     "kubernetes.io/role/elb"                      = "1"
   }
 
   private_subnet_tags = {
-    "kubernetes.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/cluster/${local.sre_candidate}" = "shared"
     "kubernetes.io/role/internal-elb"             = "1"
   }
 
-  tags = {
-    sre_candidate = "${var.candidate_name}"
-    #Tag 
-  }
 }
