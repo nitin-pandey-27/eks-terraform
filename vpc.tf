@@ -1,8 +1,3 @@
-locals {
-  sre_candidate = "${var.candidate_name}"
-}
-
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.2.0"
@@ -23,16 +18,16 @@ module "vpc" {
   #No need to enable any Gateway
   
   tags = {
-    "kubernetes.io/cluster/${local.sre_candidate}" = "shared"
+    "kubernetes.io/cluster/${var.candidate_name}" = "shared"
   }
   
   public_subnet_tags = {
-    "kubernetes.io/cluster/${local.sre_candidate}" = "shared"
+    "kubernetes.io/cluster/${var.candidate_name}" = "shared"
     "kubernetes.io/role/elb"                      = "1"
   }
 
   private_subnet_tags = {
-    "kubernetes.io/cluster/${local.sre_candidate}" = "shared"
+    "kubernetes.io/cluster/${var.candidate_name}" = "shared"
     "kubernetes.io/role/internal-elb"             = "1"
   }
 
