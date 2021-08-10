@@ -12,7 +12,7 @@ module "vpc" {
   public_subnets  = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
   #AZ with 6 subnets, 3 subnet each for Private Network and Public Network
 
-  enable_nat_gateway = false
+  enable_nat_gateway = true
   enable_vpn_gateway = false
   enable_dns_hostnames = true
 
