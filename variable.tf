@@ -3,7 +3,7 @@ variable "region" {
   description = "AWS region"
 }
 
-variable "candidate_name" {
+variable "user_name" {
 
   default = "nitin-pandey"
   type = string
