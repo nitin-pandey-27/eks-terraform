@@ -30,5 +30,5 @@ output "region" {
 
 output "cluster_name" {
   description = "Kubernetes Cluster Name"
-  value       = "${var.candidate_name}"
+  value       = "${var.user_name}"
 }
