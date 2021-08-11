@@ -1,7 +1,7 @@
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version         = "17.1.0"                    #Module Version
-  cluster_name    = "${var.candidate_name}"     #K8s Cluster Name
+  cluster_name    = "${var.user_name}"          #K8s Cluster Name
   cluster_version = "1.20"                      #K8s Versoin
   subnets         = module.vpc.private_subnets  #Subnet where EKS Cluster will be deployed
     #For more details about EKS Module please refer 
@@ -11,7 +11,7 @@ module "eks" {
     Environment = "training"
     GithubRepo  = "terraform-aws-eks"
     GithubOrg   = "terraform-aws-modules"
-    sre_candidate = "${var.candidate_name}"
+    sre_candidate = "${var.user_name}"
   }
     #A map of tags to add to all resources. 
 
