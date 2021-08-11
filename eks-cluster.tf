@@ -11,7 +11,7 @@ module "eks" {
     Environment = "training"
     GithubRepo  = "terraform-aws-eks"
     GithubOrg   = "terraform-aws-modules"
-    sre_candidate = "${var.user_name}"
+    user_name   = "${var.user_name}"
   }
     #A map of tags to add to all resources. 
 
